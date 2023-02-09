@@ -79,6 +79,10 @@ def prod_matr(a, b):
                 suma += a[i][j]*b[j][c]
             producto[i][c] = suma
     return producto
+def adj_vector(v):
+    for i in range(len(v)):
+        v[i]= v[i].conjugate()
+    return v
 def cambio(vector):
     vector1 = [[(0,0) for j in range(1)] for i in range(len(vector))]
     for i in range(len(vector)):
@@ -88,26 +92,25 @@ def accion(mat, vector):
     matR = prod_matr(mat, cambio(vector))
     return matR
 def interno(vector, vector2):
-    dot = 0
-    for x, y in zip(vector,vector2):
-        dot = dot + x * y
-    return dot
-def norma(m1):
-    c = []
-    for i in range(len(m1)):
-        c.append(int(m1[i].real)**2+int(m1[i].imag)**2)
-    c = sum(c)
-    c = math.sqrt(c)
-    return c
+    if len(vector) != len(vector2):
+        raise Exception ("ERROR")
+    vector = adj_vector(vector)
+    res = 0
+    for i in range(len(vector)):
+        res += vector[i]*vector2[i]
+    return res
+def norma(vec):
+    a = []
+    for i in range(len(vec)):
+        a.append(vec[i])
+    return math.sqrt(interno(vec,a).real)
 def distance(a,b):
     if len(a) == len(b):
-        c = []
-        for i in range(len(a)):
-            c.append(a[i] - b[i])
+        return math.sqrt(math.fabs(norma(a)-norma(b)))
     else:
         raise Exception("Error")
-    n = norma(c)
-    return n
+def propios(mat):
+    return numpy.linalg.eigh(mat)
 def unitaria(m):
     if len(m) != len(m[0]):
         raise Exception("No unitaria")
@@ -134,3 +137,4 @@ def tensor(a,b):
         for j in range(len(a[0])):
             c.append(esc_matr(b,a[i][j]))
     return c
+
