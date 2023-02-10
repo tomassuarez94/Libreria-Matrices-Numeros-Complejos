@@ -57,11 +57,14 @@ def test_interno():
 def test_norma():
     m1 = [-1j, 2 + 1, 9 - 8j]
     assert c.norma(m1) == 12.449899597988733 , c.norma(m1)
-
 def test_distance():
     m1 = [-1j, 2 + 1, 9 - 8j]
     m2 = [7j, 2 + 9j, -2 + 0j]
     assert c.distance(m1, m2) == 18.193405398660254, c.distance(m1, m2)
+def test_propios():
+    m1 = [[1, 1j], [-1j, 1]]
+    assert c.propios(m1) == (array([0., 2.]), array([[-0.70710678+0.j        ,  0.70710678+0.j        ],
+       [ 0.        -0.70710678j,  0.        -0.70710678j]])) , c.propios(m1)
 def test_unitaria():
     b2 = [[7j, 2 + 9j], [-2 + 0j, 7 - 8j], [-5 + 9j, 9 - 1j]]
     assert c.unitaria(b2) == c.unitaria(b2), c.unitaria(b2)
@@ -88,6 +91,7 @@ if __name__ == '__main__':
     test_interno()
     test_norma()
     test_distance()
+    test_propios()
     #test_unitaria()
     #test_hermitiana()
     test_tensor()
