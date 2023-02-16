@@ -132,9 +132,10 @@ def hermitiana(m):
                 raise Exception("No Hermitiana")
     return "Hermitiana"
 def tensor(a,b):
-    c = []
-    for i in range(len(a)):
-        for j in range(len(a[0])):
-            c.append(esc_matr(b,a[i][j]))
+    c = [[0 for i in range(len(a)*len(b))] for j in range(len(a[0])*len(b[0]))]
+    for i in range(len(b)):
+        for j in range(len(b[0])):
+            c[i][j] = a[i//len(b)][j//len(b[0])] * b[i % len(b)][j % len(b[0])]
     return c
+print(tensor([[3+2j,5-1j,2j],[0,12,6-3j],[2,4+4j,9+3j]],[[1,3+4j,5-7j],[10+2j,6,2+5j],[0,1,2+9j]]))
 
