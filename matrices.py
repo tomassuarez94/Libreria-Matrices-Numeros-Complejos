@@ -115,7 +115,6 @@ def unitaria(m):
     if len(m) != len(m[0]):
         raise Exception("No unitaria")
     u = numpy.identity(len(m))
-    print(prod_matr(m,tra_matr(m)))
     x = (prod_matr(m,tra_matr(m)))
     for i in range(len(x)):
         for j in range(len(x[0])):
@@ -137,5 +136,3 @@ def tensor(a,b):
         for j in range(len(b[0])):
             c[i][j] = a[i//len(b)][j//len(b[0])] * b[i % len(b)][j % len(b[0])]
     return c
-print(tensor([[3+2j,5-1j,2j],[0,12,6-3j],[2,4+4j,9+3j]],[[1,3+4j,5-7j],[10+2j,6,2+5j],[0,1,2+9j]]))
-
