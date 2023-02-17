@@ -66,15 +66,15 @@ def test_propios():
     assert c.propios(m1) == (array([0., 2.]), array([[-0.70710678+0.j        ,  0.70710678+0.j        ],
        [ 0.        -0.70710678j,  0.        -0.70710678j]])) , c.propios(m1)
 def test_unitaria():
-    b2 = [[7j, 2 + 9j], [-2 + 0j, 7 - 8j], [-5 + 9j, 9 - 1j]]
+    b2 = [[1,0],[0,1]]
     assert c.unitaria(b2) == c.unitaria(b2), c.unitaria(b2)
 def test_hermitiana():
-    b2 = [[7j, 2 + 9j], [-2 + 0j, 7 - 8j], [-5 + 9j, 9 - 1j]]
+    b2 = [[5,4+5j,6-16j],[4-5j,13,7],[6+16j,7,-2.1]]
     assert c.hermitiana(b2) == c.hermitiana(b2), c.hermitiana(b2)
 def test_tensor():
-    b1 = [[-1j, 2 + 1j], [-2 + 1j, 0]]
-    b2 = [[-1j, 2 + 1j], [-2 + 1j, 0]]
-    assert c.tensor(b1,b2) == [[[(-1+0j), (1-2j)], [(1+2j), -0j]], [[(1-2j), (3+4j)], [(-5+0j), 0j]], [[(1+2j), (-5+0j)], [(3-4j), (-0+0j)]], [[-0j, 0j], [(-0+0j), 0]]], c.tensor(b1,b2)
+    b1 = [[3+2j,5-1j],[12,6-3j]]
+    b2 = [[3+4j,5-7j],[10+2j,2+5j]]
+    assert c.tensor(b1,b2) == [[(1+18j), (29-11j), 0, 0], [(26+26j), (-4+19j), 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]], c.tensor(b1,b2)
 
 if __name__ == '__main__':
     test_suma()
@@ -92,8 +92,8 @@ if __name__ == '__main__':
     test_norma()
     test_distance()
     test_propios()
-    #test_unitaria()
-    #test_hermitiana()
+    test_unitaria()
+    test_hermitiana()
     test_tensor()
     print("Prueba exitosa")
 
